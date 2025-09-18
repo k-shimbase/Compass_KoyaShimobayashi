@@ -1,4 +1,8 @@
 <x-sidebar>
+
+<!--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-->
+<!-- ◆ ユーザプロフィール画面 (UsersController userProfile関数)             -->
+<!--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-->
 <div class="vh-100 border">
   <div class="top_area w-75 m-auto pt-5">
     <span>{{ $user->over_name }}</span><span>{{ $user->under_name }}さんのプロフィール</span>

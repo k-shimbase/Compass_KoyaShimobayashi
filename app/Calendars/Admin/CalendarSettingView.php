@@ -3,21 +3,39 @@ namespace App\Calendars\Admin;
 use Carbon\Carbon;
 use App\Models\Calendars\ReserveSettings;
 
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ▮ 予約枠設定可能な管理者用カレンダー
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 class CalendarSettingView{
   private $carbon;
 
+  //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ▮ コンストラクタ
+  //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   function __construct($date){
+
+    //◆指定された日付でCarbonインスタンスを作成
     $this->carbon = new Carbon($date);
   }
 
+  //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ▮ カレンダーのタイトル(n年m月を返す)
+  //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   public function getTitle(){
     return $this->carbon->format('Y年n月');
   }
 
+  //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ▮ カレンダー表示
+  //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   public function render(){
     $html = [];
+
+    //◆カレンダーテーブルの開始タグ
     $html[] = '<div class="calendar text-center">';
     $html[] = '<table class="table m-auto border adjust-table">';
+
+    //◆ヘッダー箇所(曜日表示/ thead = table header / tr = row / th = table header cell)
     $html[] = '<thead>';
     $html[] = '<tr>';
     $html[] = '<th class="border">月</th>';

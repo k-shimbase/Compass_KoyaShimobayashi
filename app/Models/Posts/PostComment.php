@@ -17,10 +17,16 @@ class PostComment extends Model
         'comment',
     ];
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆PostCmment → Postモデルへのリレーション | 多 → 単
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function post(){
         return $this->belongsTo('App\Models\Posts\Post');
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆コメントしたユーザの取得関数
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function commentUser($user_id){
         return User::where('id', $user_id)->first();
     }

@@ -12,8 +12,11 @@ class MainCategory extends Model
         'main_category'
     ];
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆MainCategory → SubCategoryモデルへのリレーション | 単 → 多
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function subCategories(){
-        // リレーションの定義
+        // リレーションの定義 hasMany
     }
 
 }

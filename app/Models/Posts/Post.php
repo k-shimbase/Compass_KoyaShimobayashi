@@ -15,19 +15,34 @@ class Post extends Model
         'post',
     ];
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆Post → Userモデルへのリレーション | 多 → 単
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function user(){
         return $this->belongsTo('App\Models\Users\User');
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆Post → PostCommentモデルへのリレーション | 単 → 多
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function postComments(){
         return $this->hasMany('App\Models\Posts\PostComment');
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆Post → SubCategoryモデルへのリレーション | 多 → 多
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function subCategories(){
-        // リレーションの定義
+        // リレーションの定義 belongsToMany
     }
 
-    // コメント数
+
+
+
+
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆投稿のコメント数取得関数
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function commentCounts($post_id){
         return Post::with('postComments')->find($post_id)->postComments();
     }

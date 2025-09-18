@@ -13,6 +13,9 @@ class Like extends Model
         'like_post_id'
     ];
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆投稿のいいね数取得関数
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function likeCounts($post_id){
         return $this->where('like_post_id', $post_id)->get()->count();
     }

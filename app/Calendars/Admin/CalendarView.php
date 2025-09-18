@@ -58,9 +58,12 @@ class CalendarView{
   }
 
   protected function getWeeks(){
+    //◆weeks配列初期化/月初日と月末日を取得する
     $weeks = [];
     $firstDay = $this->carbon->copy()->firstOfMonth();
     $lastDay = $this->carbon->copy()->lastOfMonth();
+
+    //◆週
     $week = new CalendarWeek($firstDay->copy());
     $weeks[] = $week;
     $tmpDay = $firstDay->copy()->addDay(7)->startOfWeek();

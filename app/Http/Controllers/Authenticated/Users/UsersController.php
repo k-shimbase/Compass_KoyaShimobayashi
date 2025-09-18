@@ -14,6 +14,9 @@ use App\Searchs\SearchResultFactories;
 class UsersController extends Controller
 {
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆ユーザ検索画面(GET) | user.show
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function showUsers(Request $request){
         $keyword = $request->keyword;
         $category = $request->category;
@@ -27,12 +30,18 @@ class UsersController extends Controller
         return view('authenticated.users.search', compact('users', 'subjects'));
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆ユーザプロフィール画面(GET) | user.profile
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function userProfile($id){
         $user = User::with('subjects')->findOrFail($id);
         $subject_lists = Subjects::all();
         return view('authenticated.users.profile', compact('user', 'subject_lists'));
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◇ユーザプロフィール編集処理(POST) | user.edit
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function userEdit(Request $request){
         $user = User::findOrFail($request->user_id);
         $user->subjects()->sync($request->subjects);
