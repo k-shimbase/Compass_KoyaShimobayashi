@@ -21,6 +21,7 @@ li {
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 /* ◆ サイドバー                                 */
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* サイドバー */
 .sidebar {
   width: 150px;
   height: 100vh;
@@ -28,10 +29,12 @@ li {
   font-weight: bold;
 }
 
+/* コンテンツ描画エリア */
 .main-container {
   width: 100%;
 }
 
+/* サイドバーのリンクテキスト */
 .sidebar p a {
   color: #FFF;
 }
@@ -39,6 +42,7 @@ li {
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 /* ◆ トップページ                               */
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* ユーザ情報表エリア */
 .user_status {
   border-radius: 10px;
   background: #FFF;
@@ -67,27 +71,33 @@ li {
   background: #EEE;
 }
 
+/* スクール予約画面のtd(日毎のセル) */
 .calendar-td {
   min-width: 100px;
 }
 
+/* 予約確認画面の各パートの予約者数の表示要素 */
 .day_part {
   color: #494949;
   font-size: 12px;
 }
 
+/* スクール枠登録画面のテーブル要素 */
 .adjust-table {
   width: 70% !important;
 }
 
+/* 上記のテーブルセル */
 .adjust-table td {
   padding: 0 !important;
 }
 
+/* スクール枠登録画面の入力エリア(各日付/各パートごとのlimit_usersの入力と表示が為されているエリア)のpタグ */
 .adjust-area p {
   justify-content: space-around;
 }
 
+/* スクール枠登録ビューファイルに記述されているスクール枠上限登録ボタン */
 .adjust-table-btn {
   width: 70%;
 }
@@ -95,6 +105,7 @@ li {
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 /* ◆ モーダル共通                               */
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* モーダル */
 .modal {
   display: none;
   height: 100vh;
@@ -103,6 +114,7 @@ li {
   width: 100%;
 }
 
+/* モーダル背景 */
 .modal__bg {
   background: rgba(0, 0, 0, 0.8);
   height: 100vh;
@@ -110,6 +122,7 @@ li {
   width: 100%;
 }
 
+/* モーダルコンテンツ総合 */
 .modal__content {
   background: #fff;
   left: 50%;
@@ -123,45 +136,58 @@ li {
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 /* ◆ 掲示板                                     */
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-/* ◇main_categories要素へのjsで$('.category_num' + category_id).slideToggle();が指定されている為displayがnone表示となっている */
+/* main_categories要素へのjsで$('.category_num' + category_id).slideToggle();が指定されている為displayがnone表示となっている */
 .sub_categories {
   display: none;
 }
 
+/* 投稿画面の左側エリア */
 .post_create_area {
   background: #FFF;
   border-radius: 10px;
 }
 
+/* 投稿画面の左側エリアのテキストエリア */
 .post_create_area textarea {
   resize: none;
   height: 300px;
   white-space: pre-wrap;
 }
 
+/* 投稿詳細エリアのコンテナ */
 .detail_container {
   background: #FFF;
 }
 
+/* 掲示板トップの投稿一覧表示エリア */
 .post_area {
   background: #FFF;
   border-radius: 10px;
 }
 
+/* 掲示板トップの各投稿のアイコンエリア */
 .post_bottom_area {
   justify-content: space-between;
 }
 
+/* 投稿一覧表示エリアのアイコンエリアflex(HTMLタグにてd-flexの指定あり) */
+.post_status span {
+  font-size: 12px;
+}
+
+/* いいねボタン */
 .like_btn,
 .un_like_btn {
   cursor: pointer;
 }
 
+/* いいね取り消しボタン */
 .un_like,
 .un_like_btn {
   color: #E2254D;
 }
 
+/* 投稿作成エリアでのバリデーションエラーメッセージ要素 */
 .error_message {
   font-size: 12px;
   color: red;
@@ -170,35 +196,42 @@ li {
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 /* ◆ 掲示板詳細画面                             */
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 投稿詳細画面におけるユーザ名の表示要素を包括する要素 */
 .contributor {
   font-size: 12px;
   color: #999;
   font-weight: bold;
 }
 
+/* 投稿詳細画面における投稿タイトル */
 .detsail_post_title {
   font-size: 14px;
 }
 
+/* 投稿詳細画面における投稿内容 */
 .detsail_post {
   font-size: 12px;
   color: #9E9E9E;
 }
 
+/* 編集/削除ボタンを包括する要素 */
 .detail_inner_head {
   display: flex;
   justify-content: space-between;
 }
 
+/* 編集ボタン */
 .edit-modal-open {
   cursor: pointer;
 }
 
+/* 編集モーダルの投稿内容入力エリア */
 .modal-inner-body textarea {
   height: 150px;
   resize: none;
 }
 
+/* 編集モーダル内の閉じるボタンと編集ボタンを包括する要素 */
 .edit-modal-btn {
   justify-content: space-between;
 }
@@ -206,37 +239,39 @@ li {
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 /* ◆ 掲示板 コメント                            */
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 投稿詳細画面におけるコメントエリア(左側と右側共通) / 背景色 */
 .comment_container {
   background: #FFF;
 }
 
+/* コメントエリア(左側と右側共通) */
 .comment_area p,
 .comment_area input {
   font-size: 12px;
   font-weight: bold;
 }
 
+/* コメント入力エリアのtextarea (画面右側のエリア) */
 .comment_area textarea {
   height: 300px;
   resize: none;
 }
 
+/* 投稿詳細画面におけるコメントエリア内のspan */
 .comment_container span {
-  font-size: 12px;
-}
-
-.post_status span {
   font-size: 12px;
 }
 
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 /* ◆ 掲示板 カテゴリー                          */
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 投稿作成エリアのカテゴリー追加エリア (画面右側) */
 .category_area {
   background: #FFF;
   border-radius: 10px;
 }
 
+/* 投稿作成エリアのメインカテゴリーのセレクトボックス？ */
 .category_box {
   border-radius: 5px;
   padding: 3px;
@@ -245,6 +280,7 @@ li {
   color: #FFF;
 }
 
+/* 投稿一覧表示エリアの"いいねした投稿"や"自分の投稿"のボタン要素 */
 .category_btn {
   font-size: 12px;
   border-radius: 5px;
@@ -254,6 +290,7 @@ li {
   color: #FFF;
 }
 
+/* 投稿一覧表示エリアの右側エリアにおけるメインカテゴリとサブカテゴリのテキスト表示 */
 .main_categories span,
 .sub_categories li input {
   list-style: none;

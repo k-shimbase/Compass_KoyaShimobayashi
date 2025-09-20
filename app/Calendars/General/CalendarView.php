@@ -19,7 +19,7 @@ class CalendarView{
   }
 
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // ◆ スクール予約確認画面の描画関数 | 実行元: CalendarController show | calendar.general.show
+  // ◆ スクール予約画面の描画関数 | 実行元: CalendarController show | calendar.general.show
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   function render(){
     $html = [];
