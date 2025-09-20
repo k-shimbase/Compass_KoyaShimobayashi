@@ -1,4 +1,8 @@
 $(function () {
+
+  //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ◆生徒のチェックボックスを押下した際に選択科目のセクション(.select_teacher)が表示される
+  //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   $(document).on('click', '.other_role', function () {
     $('.select_teacher').removeClass('d-none');
   });
@@ -6,6 +10,9 @@ $(function () {
     $('.select_teacher').addClass('d-none');
   });
 
+  //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ◆over_nameの文字数が1以上でsuccessの付与/該当しない際はsuccess剥奪
+  //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   $(document).on('click keyup change', function () {
     var over_name = $('.over_name').val().length;
     if (over_name >= 1) {
@@ -14,6 +21,9 @@ $(function () {
       $('.over_name').removeClass('success_name');
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆over_name_kanaの文字数が1以上でsuccessの付与/該当しない際はsuccess剥奪
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     var over_name_kana = $('.over_name_kana').val().length;
     if (over_name_kana >= 1) {
       $('.over_name_kana').addClass('success_name_kana');
@@ -21,6 +31,9 @@ $(function () {
       $('.over_name_kana').removeClass('success_name_kana');
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆under_nameの文字数が1以上でsuccessの付与/該当しない際はsuccess剥奪
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     var under_name = $('.under_name').val().length;
     if (under_name >= 1) {
       $('.under_name').addClass('success_under_name');
@@ -28,6 +41,9 @@ $(function () {
       $('.under_name').removeClass('success_under_name');
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆under_name_kanaの文字数が1以上でsuccessの付与/該当しない際はsuccess剥奪
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     var under_name_kana = $('.under_name_kana').val().length;
     if (under_name_kana >= 1) {
       $('.under_name_kana').addClass('success_under_name_kana');
@@ -35,6 +51,9 @@ $(function () {
       $('.under_name_kana').removeClass('success_under_name_kana');
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆mail_addressの文字数が1以上でsuccessの付与/該当しない際はsuccess剥奪
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     var mail_address = $('.mail_address').val().length;
     if (mail_address >= 1) {
       $('.mail_address').addClass('success_mail_address');
@@ -42,6 +61,9 @@ $(function () {
       $('.mail_address').removeClass('success_mail_address');
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆passwordの文字数が1以上でsuccessの付与/該当しない際はsuccess剥奪
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     var password = $('.password').val().length;
     if (password >= 1) {
       $('.password').addClass('success_password');
@@ -49,6 +71,9 @@ $(function () {
       $('.password').removeClass('success_password');
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆password_confirmの文字数が1以上でsuccessの付与/該当しない際はsuccess剥奪
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     var password_confirm = $('.password_confirmation').val().length;
     if (password_confirm >= 1) {
       $('.password_confirmation').addClass('success_password_confirm');
@@ -56,6 +81,9 @@ $(function () {
       $('.password_confirmation').removeClass('success_password_confirm');
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆sexの文字数が1以上でsuccessの付与/該当しない際はsuccess剥奪
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     var sex = $('input:radio[name="sex"]:checked').val();
     if (sex > 0) {
       $('.sex').addClass('success_sex');
@@ -63,6 +91,9 @@ $(function () {
       $('.sex').removeClass('success_sex');
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆old_yearが選択されている際はsuccessの付与/該当しない際はsuccess剥奪
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     var old_year = $('.old_year').val();
     if (old_year !== 'none') {
       $('.old_year').addClass('success_year');
@@ -70,6 +101,9 @@ $(function () {
       $('.old_year').removeClass('success_year');
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆old_monthが選択されている際はsuccessの付与/該当しない際はsuccess剥奪
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     var old_month = $('.old_month').val();
     if (old_month !== 'none') {
       $('.old_month').addClass('success_month');
@@ -77,6 +111,9 @@ $(function () {
       $('.old_month').removeClass('success_month');
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆old_dayが選択されている際はsuccessの付与/該当しない際はsuccess剥奪
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     var old_day = $('.old_day').val();
     if (old_day !== 'none') {
       $('.old_day').addClass('success_day');
@@ -84,6 +121,9 @@ $(function () {
       $('.old_day').removeClass('success_day');
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆役職の何れかが選択されている際はsuccessの付与/該当しない際はsuccess剥奪
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     var role = $('input:radio[name="role"]:checked').val();
     if (role > 0) {
       $('.role').addClass('success_role');
@@ -91,6 +131,9 @@ $(function () {
       $('.role').removeClass('success_role');
     }
 
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆上記全ての要素がsuccessで新規登録ボタンのdisabledを無効化/該当しない際は有効化
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     if ($('.over_name').hasClass('success_name') && $('.over_name_kana').hasClass('success_name_kana') && $('.under_name').hasClass('success_under_name') && $('.under_name_kana').hasClass('success_under_name_kana') && $('.mail_address').hasClass('success_mail_address') && $('.password').hasClass('success_password') && $('.password_confirmation').hasClass('success_password_confirm') && $('.sex').hasClass('success_sex') && $('.old_year').hasClass('success_year') && $('.old_month').hasClass('success_month') && $('.old_day').hasClass('success_day') && $('.role').hasClass('success_role')) {
       $('.register_btn').prop('disabled', false);
     } else {

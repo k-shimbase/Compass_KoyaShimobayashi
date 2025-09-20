@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Authenticated\Calendar\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Calendars\Admin\CalendarView;
-use App\Calendars\Admin\CalendarSettingView;
+use App\Calendars\Admin\CalendarView; //◇Admin CalendarViewクラスのuse
+use App\Calendars\Admin\CalendarSettingView; //◇Admin CalendarSettingViewクラスのuse
 use App\Models\Calendars\ReserveSettings;
 use App\Models\Calendars\Calendar;
 use App\Models\USers\User;
@@ -18,6 +18,8 @@ class CalendarsController extends Controller
     // ◆スクール予約確認画面(GET) | calendar.admin.show
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function show(){
+
+        //◆Admin CalendarViewのインスタンス
         $calendar = new CalendarView(time());
         return view('authenticated.calendar.admin.calendar', compact('calendar'));
     }
@@ -34,6 +36,8 @@ class CalendarsController extends Controller
     // ◆スクール枠登録(GET) | calendar.admin.setting
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function reserveSettings(){
+
+        //◆Admin CalendarSettingViewのインスタンス
         $calendar = new CalendarSettingView(time());
         return view('authenticated.calendar.admin.reserve_setting', compact('calendar'));
     }

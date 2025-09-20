@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Authenticated\Calendar\General;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Calendars\General\CalendarView;
+use App\Calendars\General\CalendarView; //◇General CalendarViewクラスのuse
 use App\Models\Calendars\ReserveSettings;
 use App\Models\Calendars\Calendar;
 use App\Models\USers\User;
@@ -17,6 +17,8 @@ class CalendarController extends Controller
     // ◆スクール予約画面(GET) | calendar.general.show
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function show(){
+
+        //◆General CalendarViewのインスタンス
         $calendar = new CalendarView(time());
         return view('authenticated.calendar.general.calendar', compact('calendar'));
     }

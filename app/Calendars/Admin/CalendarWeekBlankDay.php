@@ -1,6 +1,9 @@
 <?php
 namespace App\Calendars\Admin;
 
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ◆Admin階層
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 class CalendarWeekBlankDay extends CalendarWeekDay{
 
   function getClassName(){

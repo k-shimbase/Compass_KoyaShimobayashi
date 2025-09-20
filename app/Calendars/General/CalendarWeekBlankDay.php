@@ -1,6 +1,9 @@
 <?php
 namespace App\Calendars\General;
 
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ◆General階層
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 class CalendarWeekBlankDay extends CalendarWeekDay{
   function getClassName(){
     return "day-blank";

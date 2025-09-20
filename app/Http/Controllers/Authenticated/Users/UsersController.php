@@ -18,15 +18,23 @@ class UsersController extends Controller
     // ◆ユーザ検索画面(GET) | user.show
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function showUsers(Request $request){
+
+        //◇リクエストの取得
         $keyword = $request->keyword;
         $category = $request->category;
         $updown = $request->updown;
         $gender = $request->sex;
         $role = $request->role;
-        $subjects = null;// ここで検索時の科目を受け取る
+        $subjects = null; //配列で検索時の選択科目一覧を受け取る
+
+        //◇検索の役割を持つファクトリのインスタンスを作成/initializeUsersで検索実行(何故モデルを利用していないのか不明)
+        //◇App/Searchs/SearchResultFactories.php
         $userFactory = new SearchResultFactories();
         $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);
+
+        //◇全ての科目を取得(ビューファイルで利用する為)
         $subjects = Subjects::all();
+
         return view('authenticated.users.search', compact('users', 'subjects'));
     }
 
