@@ -11,6 +11,8 @@ use App\Models\Posts\PostComment;
 use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
+use App\Http\Requests\BulletinBoard\MainCategoryRequest;
+use App\Http\Requests\BulletinBoard\SubCategoryRequest;
 use Auth;
 
 class PostsController extends Controller
@@ -113,7 +115,7 @@ class PostsController extends Controller
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     // ◇メインカテゴリ作成処理(POST) | main.category.create
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    public function mainCategoryCreate(Request $request){
+    public function mainCategoryCreate(MainCategoryRequest $request){
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
     }
@@ -121,7 +123,7 @@ class PostsController extends Controller
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     // ◇サブカテゴリ作成処理(POST) | sub.category.create
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    public function subCategoryCreate(Request $request){
+    public function subCategoryCreate(SubCategoryRequest $request){
         $main_category = MainCategory::findOrFail($request->main_category_id);
 
         $main_category->subCategory()->create(['sub_category' => $request->sub_category_name]);
