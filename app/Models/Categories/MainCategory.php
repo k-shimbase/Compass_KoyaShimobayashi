@@ -3,6 +3,7 @@
 namespace App\Models\Categories;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Categories\SubCategory;
 
 class MainCategory extends Model
 {
@@ -15,8 +16,8 @@ class MainCategory extends Model
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     // ◆MainCategory → SubCategoryモデルへのリレーション | 単 → 多
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    public function subCategories(){
-        // リレーションの定義 hasMany
+    public function subCategory(){
+        return $this->hasMany(SubCategory::class, 'main_category_id');
     }
 
 }

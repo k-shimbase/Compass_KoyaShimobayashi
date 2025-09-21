@@ -9,17 +9,40 @@
   <!-- ◆ 投稿詳細エリア (画面左側エリア)                                       -->
   <!--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-->
   <div class="w-50 mt-5">
-    <div class="m-3 detail_container">
+    <div class="m-3 w-90 detail_container">
 
       <div class="p-3">
+        @if($errors->first('post_title'))
+          <span class="error_message">{{ $errors->first('post_title') }}</span>
+        @elseif ($errors->first('post_body'))
+          <span class="error_message">{{ $errors->first('post_body') }}</span>
+        @endif
 
-        <!--◆編集/削除ボタン-->
-        <div class="detail_inner_head">
-          <div>
+
+
+
+
+        <div class="post_detail_area d-flex">
+
+          <!--◇科目表示-->
+          <div class="">
+              @foreach ($post->subCategory as $sub_category)
+                <span class="category_btn">{{ $sub_category->sub_category }}</span>
+              @endforeach
           </div>
-          <div>
-            <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}">削除</a>
+
+          <!--◆編集/削除ボタン-->
+          <div class="detail_inner_head">
+            <div>
+              <!--sub_categoryの表示-->
+            </div>
+
+            @if (Auth::id() == $post->user->id)
+            <div>
+              <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
+              <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('削除してよろしいですか？')">削除</a>
+            </div>
+            @endif
           </div>
         </div>
 

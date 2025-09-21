@@ -23,11 +23,11 @@ class PostsController extends Controller
 
         //◇全てのポストの取得/全てのメインカテゴリの取得
         $posts = Post::with('user', 'postComments')->get();
-        $categories = MainCategory::get();
+        $main_categories = MainCategory::get();
 
         //◇ビューファイルでそれぞれのモデルの関数を利用する為の空インスタンス作成
         $like = new Like;
-        $post_comment = new Post;
+        $post_comment = new PostComment;
 
         //◇キーワードによる検索
         if(!empty($request->keyword)){
@@ -35,24 +35,13 @@ class PostsController extends Controller
             ->where('post_title', 'like', '%'.$request->keyword.'%')
             ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
 
-        //◇サブカテゴリー選択による検索とする
-        }else if($request->category_word){
-            $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments')->get();
-
-        /*
+        //◇サブカテゴリー選択による検索
         }else if($request->sub_category){
-            $sub_category_id = $request->sub_category;
+            $sub_category = $request->sub_category;
 
-            $posts = Post::with('user', 'postComments')
-
-                //◇post単体だとリレーションのみで可能だが、今回は特定のsub_categoryに属しているpost全てを取得する為
-                //◇whereHasでテーブルに接続し(厳密にはwhereHasは中間テーブルとリレーション先モデルとの結合の為、post_sub_categories中間テーブルで完結するがコードの長さや見やすさの為whereHasを利用している)
-                //◇そこからsub_categoryのidを利用してwhereでpost_idを絞り込んでいる
-                ->whereHas('subCategories', function($query) use ($sub_category_id) {
-                $query->where('sub_categories.id', $sub_category_id);
+            $posts = Post::whereHas('subCategory', function($query) use ($sub_category) {
+                $query->where('sub_category', $sub_category);
             })->get();
-        */
 
         //◇いいねした投稿による検索
         }else if($request->like_posts){
@@ -65,7 +54,7 @@ class PostsController extends Controller
             ->where('user_id', Auth::id())->get();
         }
 
-        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
+        return view('authenticated.bulletinboard.posts', compact('posts', 'main_categories', 'like', 'post_comment'));
     }
 
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -88,11 +77,15 @@ class PostsController extends Controller
     // ◇投稿作成処理(POST) | post.create
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function postCreate(PostFormRequest $request){
+
         $post = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+
+        $sub_category_id = $request->post_category_id;
+        $post->subCategory()->attach($sub_category_id);
 
         return redirect()->route('post.show');
     }
@@ -100,7 +93,7 @@ class PostsController extends Controller
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     // ◇投稿編集処理(POST) | post.edit
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    public function postEdit(Request $request){
+    public function postEdit(PostFormRequest $request){
         Post::where('id', $request->post_id)->update([
             'post_title' => $request->post_title,
             'post' => $request->post_body,
@@ -128,6 +121,12 @@ class PostsController extends Controller
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     // ◇サブカテゴリ作成処理(POST) | sub.category.create
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    public function subCategoryCreate(Request $request){
+        $main_category = MainCategory::findOrFail($request->main_category_id);
+
+        $main_category->subCategory()->create(['sub_category' => $request->sub_category_name]);
+        return redirect()->route('post.input');
+    }
 
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     // ◇コメント作成処理(POST) | comment.create

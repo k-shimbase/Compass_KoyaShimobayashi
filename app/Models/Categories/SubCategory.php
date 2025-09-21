@@ -3,6 +3,7 @@
 namespace App\Models\Categories;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Categories\MainCategory;
 
 class SubCategory extends Model
 {
@@ -17,13 +18,13 @@ class SubCategory extends Model
     // ◆SubCategory → MainCategoryモデルへのリレーション | 多 → 単
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function mainCategory(){
-        // リレーションの定義 belongsTo
+        return $this->belongsTo(MainCategory::class, 'main_category_id');
     }
 
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     // ◆SubCategory → Postモデルへのリレーション | 多 → 多
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function posts(){
-        // リレーションの定義 belongsToMany
+        return $this->belongsToMany('App\Models\Posts\Post', 'post_sub_categories', 'sub_category_id', 'post_id');
     }
 }

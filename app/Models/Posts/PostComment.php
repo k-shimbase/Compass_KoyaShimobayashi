@@ -30,4 +30,11 @@ class PostComment extends Model
     public function commentUser($user_id){
         return User::where('id', $user_id)->first();
     }
+
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // ◆投稿に付属しているコメント数の取得
+    //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    public function commentCounts($post_id){
+        return $this->where('post_id', $post_id)->get()->count();
+    }
 }

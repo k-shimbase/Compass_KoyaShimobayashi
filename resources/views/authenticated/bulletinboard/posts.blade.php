@@ -27,19 +27,27 @@
 
       <!--◇アイコンエリア-->
       <div class="post_bottom_area d-flex">
+
+        <!--◇科目表示-->
+        <div class="">
+            @foreach ($post->subCategory as $sub_category)
+              <span class="category_btn">{{ $sub_category->sub_category }}</span>
+            @endforeach
+        </div>
+
         <div class="d-flex post_status">
 
           <!--◇コメントアイコン/コメント数の表示-->
           <div class="mr-5">
-            <i class="fa fa-comment"></i><span class=""></span>
+            <i class="fa fa-comment"></i><span class="">{{ $post_comment->commentCounts($post->id) }}</span>
           </div>
 
           <!--◇いいねアイコン/いいね数の表示-->
           <div>
             @if(Auth::user()->is_Like($post->id))
-            <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}"></span></p>
+            <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span></p>
             @else
-            <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}"></span></p>
+            <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span></p>
             @endif
           </div>
 
@@ -75,22 +83,23 @@
       </div>
 
       <!--◇いいねした投稿で検索/自分の投稿のみで検索/input type="submit"の特性でvalueがhtml上にも表示され、かつキーの値としても送信される-->
-      <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
-      <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
+      <input type="submit" name="like_posts" class="category_btn category_allow_click" value="いいねした投稿" form="postSearchRequest">
+      <input type="submit" name="my_posts" class="category_btn category_allow_click" value="自分の投稿" form="postSearchRequest">
 
       <ul>
         <!--◇メインカテゴリ描画-->
-        @foreach($categories as $category)
+        @foreach($main_categories as $main_category)
+          <li class="main_categories" category_id="{{ $main_category->id }}">
+            <span>{{ $main_category->main_category }}</span>
 
-          <li class="main_categories" category_id="{{ $category->id }}">
-            <span>{{ $category->main_category }}</span>
-
-            <!--◇foreach ($category->subCategory as sub_category)-->
-            <!--<div class="sub_categories">-->
-            <!--<ul>-->
-            <!--<li><input type="submit" name="sub_category" class="category_btn" value=" $sub_category->id " form="postSearchRequest"></li>-->
+            <div class="sub_categories category_num{{ $main_category->id }}">
+              <ul>
+                @foreach ($main_category->subCategory as $sub_category)
+                <li><input type="submit" name="sub_category" class="category_btn" value="{{ $sub_category->sub_category }}" form="postSearchRequest"></inupt></li>
+                @endforeach
+              </ul>
+            </div>
           </li>
-
         @endforeach
       </ul>
 

@@ -32,8 +32,8 @@ class Post extends Model
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     // ◆Post → SubCategoryモデルへのリレーション | 多 → 多
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    public function subCategories(){
-        // リレーションの定義 belongsToMany
+    public function subCategory(){
+        return $this->belongsToMany('App\Models\Categories\SubCategory', 'post_sub_categories', 'post_id', 'sub_category_id');
     }
 
 
