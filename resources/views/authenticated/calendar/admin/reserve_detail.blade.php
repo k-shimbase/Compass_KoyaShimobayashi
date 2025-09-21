@@ -7,23 +7,27 @@
   <div class="w-50 m-auto h-75">
 
     <!--◆日数とパートの表示-->
-    <p><span>日</span><span class="ml-3">部</span></p>
+    <p><span>{{ $formatted_date }}</span><span class="ml-3">{{ $part }}部</span></p>
 
     <!--◆該当日付/パートの予約者一覧エリア-->
     <div class="h-75 border">
-      <table class="">
+      <table class="reserve_detail_table w-100">
+
+        <!--◇ヘッダー-->
+        <tr class="text-center table-row-flex">
+          <th class="table-id">ID</th>
+          <th class="table-name">名前</th>
+          <th class="table-place">場所</th>
+        </tr>
 
         <!--◇ユーザ表示処理-->
-        <!--@foreach-->
-        <tr class="text-center">
-          <th class="w-25">ID</th>
-          <th class="w-25">名前</th>
+        @foreach ($reserveUsers as $user)
+        <tr class="text-center table-row-flex">
+          <td class="table-id">{{ $user->id }}</td>
+          <td class="table-name">{{ $user->over_name }} {{ $user->under_name}}</td>
+          <td class="table-place">リモート</td>
         </tr>
-        <tr class="text-center">
-          <td class="w-25"></td>
-          <td class="w-25"></td>
-        </tr>
-        <!--@endforeach-->
+        @endforeach
 
       </table>
     </div>

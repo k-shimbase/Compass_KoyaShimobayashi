@@ -65,7 +65,7 @@ class CalendarView{
 
         //◇処理対象日付がstartDay以上/現在日が処理対象日付以下(つまるところ処理対象の日付が月初以降かつ今日以前の際) everyDayはCalendarWeekDayクラスの関数(Carbonインスタンスにformatを適用する処理)
         if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-          $html[] = '<td class="calendar-td">'; //過去日付クラスの付与を行う
+          $html[] = '<td class="calendar-td past-day">'; //過去日付クラスの付与を行う
         }else{
           $html[] = '<td class="calendar-td '.$day->getClassName().'">'; //曜日クラス(このgetClassNameはCalendarWeekDayクラスの関数/曜日を返す/day-monのように)
         }
@@ -91,30 +91,21 @@ class CalendarView{
             $reservePart = "リモ3部";
           }
 
-          //◇過去日の際の描画 (getPart[]は空欄)
-          //◇予約済みであった過去日の描画(<p>タグ)
+          //◇過去日の際の描画(name=getPart[]は空欄)/予約済みであった過去日の描画(<p>タグ)
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
+            $html[] = '<span class="calendar_past_text">'.filter_var($reservePart, FILTER_SANITIZE_NUMBER_INT).'部参加</span>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
 
-          //◇現在以降の日付の描画 (getPart[]は空欄)
+          //◇現在以降の日付の描画(name=getPart[]は空欄)
           }else{
 
-            /*
-            //◇処理対象日がログインユーザの予約日に含まれていた際に該当予約日(パート)のレコードを取得する処理
-            $reserve = $day->authReserveDate($day->everyDay()) //処理対象日が自身の予約日に含まれているか否かの確認
-              ->where('setting_part', $reservePart) //パートで絞り込み
-              ->first() //予約日の日付/パートと紐づいたreserve_settingsのレコードが返る(あとは$reserve->idを用いるだけ)
-            //◇下記のdelete_dateで送る値も$reserve->idで良い
-            */
-
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
+            $html[] = '<button type="submit" class="delete-modal-open btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" reserve_date="'.$day->everyDay().'" reserve_part="'.$reservePart.'" reserve_id="'.$day->authReserveDate($day->everyDay())->first()->id.'">'. $reservePart .'</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
 
-        //◇処理対象日がログインユーザの予約日に含まれていなかった際 (getPart[]でパート指定あり)
+        //◇処理対象日がログインユーザの予約日に含まれていなかった際(getPart[]でパート指定あり)
         }else{
-          $html[] = $day->selectPart($day->everyDay());
+          $html[] = $day->selectPart($day->everyDay(), $startDay, $toDay);
         }
 
         //getData[]として日付を指定する為の関数
@@ -142,7 +133,7 @@ class CalendarView{
     $html[] = '</table>';
     $html[] = '</div>';
     $html[] = '<form action="/reserve/calendar" method="post" id="reserveParts">'.csrf_field().'</form>';
-    $html[] = '<form action="/delete/calendar" method="post" id="deleteParts">'.csrf_field().'</form>';
+    $html[] = '<form action="/delete/calendar" method="post" id="reserveParts">'.csrf_field().'</form>';
 
     return implode('', $html);
   }

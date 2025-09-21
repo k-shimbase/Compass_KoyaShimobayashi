@@ -97,6 +97,10 @@
     <div class="comment_container border m-5">
 
       <div class="comment_area p-3">
+        @if($errors->first('comment'))
+        <span class="error_message">{{ $errors->first('comment') }}</span>
+        @endif
+
         <p class="m-0">コメントする</p>
 
         <!--◇コメント入力テキストエリア-->

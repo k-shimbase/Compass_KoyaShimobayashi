@@ -46,19 +46,40 @@ class CalendarWeekDay{
     $two_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
     $three_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
 
-    //◇$one_part->users()->count();
-    //◇ReserveSettingsモデルからUserモデルへのリレーションの実施、そしてcount()関数で人数を取得
-
     $html[] = '<div class="text-left">';
+
+    //◇ReserveSettingsモデルからUserモデルへのリレーションの実施、そしてcount()関数で人数を取得
+    //◇パート1のインスタンスの存在有無による処理
     if($one_part){
-      $html[] = '<p class="day_part m-0 pt-1">1部</p>';
+      $one_part_count = $one_part->users()->count();
+      $one_part_link = '<a class="day_part m-0 pt-1" href="'.route('calendar.admin.detail', ['date' => $one_part->setting_reserve, 'part' => $one_part->setting_part]).'">1部</a>';
+    } else {
+      $one_part_count = 0;
+      $one_part_link = '<span class="day_part m-0 pt-1">1部</span>';
     }
+
+    //◇パート2のインスタンスの存在有無による処理
     if($two_part){
-      $html[] = '<p class="day_part m-0 pt-1">2部</p>';
+      $two_part_count = $two_part->users()->count();
+      $two_part_link = '<a class="day_part m-0 pt-1" href="'.route('calendar.admin.detail', ['date' => $two_part->setting_reserve, 'part' => $two_part->setting_part]).'">2部</a>';
+    } else {
+      $two_part_count = 0;
+      $two_part_link = '<span class="day_part m-0 pt-1">2部</span>';
     }
+
+    //◇パート3のインスタンスの存在有無による処理
     if($three_part){
-      $html[] = '<p class="day_part m-0 pt-1">3部</p>';
+      $three_part_count = $three_part->users()->count();
+      $three_part_link = '<a class="day_part m-0 pt-1" href="'.route('calendar.admin.detail', ['date' => $three_part->setting_reserve, 'part' => $three_part->setting_part]).'">3部</a>';
+    } else {
+      $three_part_count = 0;
+      $three_part_link = '<span class="day_part m-0 pt-1">3部</span>';
     }
+
+    //◇html配列へと格納
+    $html[] = '<div class="part_flex">'.$one_part_link.'<p class="day_part_usercount m-0 pt-1">'.$one_part_count.'</p></div>';
+    $html[] = '<div class="part_flex">'.$two_part_link.'<p class="day_part_usercount m-0 pt-1">'.$two_part_count.'</p></div>';
+    $html[] = '<div class="part_flex">'.$three_part_link.'<p class="day_part_usercount m-0 pt-1">'.$three_part_count.'</p></div>';
     $html[] = '</div>';
 
     return implode("", $html);

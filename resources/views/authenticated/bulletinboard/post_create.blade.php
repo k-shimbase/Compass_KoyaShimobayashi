@@ -10,6 +10,9 @@
   <!--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-->
   <div class="post_create_area border w-50 m-5 p-5">
     <div class="">
+      @if($errors->first('post_category_id'))
+      <span class="error_message">{{ $errors->first('post_category_id') }}</span>
+      @endif
 
       <!--◆カテゴリーを選択するセレクトボックス-->
       <p class="mb-0">カテゴリー</p>

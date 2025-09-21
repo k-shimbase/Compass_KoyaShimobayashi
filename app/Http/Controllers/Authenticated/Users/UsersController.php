@@ -25,9 +25,9 @@ class UsersController extends Controller
         $updown = $request->updown;
         $gender = $request->sex;
         $role = $request->role;
-        $subjects = null; //配列で検索時の選択科目一覧を受け取る
+        $subjects = $request->input('subjects');
 
-        //◇検索の役割を持つファクトリのインスタンスを作成/initializeUsersで検索実行(何故モデルを利用していないのか不明)
+        //◇検索の役割を持つクラスのインスタンスを作成/initializeUsersで検索実行(何故モデルを利用していないのか不明)
         //◇App/Searchs/SearchResultFactories.php
         $userFactory = new SearchResultFactories();
         $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);
@@ -36,6 +36,65 @@ class UsersController extends Controller
         $subjects = Subjects::all();
 
         return view('authenticated.users.search', compact('users', 'subjects'));
+
+
+
+
+        /*
+        /  ◇下記記述のみで実現可能(クラスを使う必要がない)
+        /
+        //◇クエリビルダの準備
+        $query = User::query();
+
+        //◇カテゴリが名前の際(各カラムに対して部分一致の検索指定)
+        if ($category == 'name') {
+            $query->orderBy("over_name_kana", $updown);
+
+            //◇キーワード指定
+            $query->where(function ($whereQuery) use ($keyword) {
+                $whereQuery->where('over_name', 'like', "%{$keyword}%")
+                ->orWhere('under_name', 'like', "%{$keyword}%")
+                ->orWhere('over_name_kana', 'like', "%{$keyword}%")
+                ->orWhere('under_name_kana', 'like', "%{$keyword}%");
+            });
+
+        //◇カテゴリがIDの際(完全一致)
+        } elseif ($category == 'id') {
+            $query->orderBy("id", $updown);
+
+            //◇キーワード指定(IDは完全一致である為入力されていた際のみ指定する)
+            if (!empty($keyword)) {
+                $query->where('id', $keyword);
+            }
+        }
+
+        //◇性別指定
+        if (!empty($gender)) {
+            $query->where('sex', $gender);
+        }
+
+        //◇役職(権限)指定
+        if (!empty($role)) {
+            $query->where('role', $role);
+        }
+
+        //◇科目指定
+        $subject_ids = $request->input('subjects');
+
+        if (!empty($subject_ids)) {
+            $query->whereHas('subjects', function ($where_query) use ($subject_ids) {
+                $where_query->whereIn('subjects.id', $subject_ids);
+            });
+        }
+
+        //◇クエリビルダの実行
+        $users = $query->get();
+
+        return view('authenticated.users.search', compact('users', 'subjects'));
+
+         /
+         /
+        */
     }
 
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

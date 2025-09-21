@@ -36,76 +36,82 @@ class CalendarWeekDay{
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   // ◆通常表示のパート(処理対象日がログインユーザの予約日に含まれていなかった際の表示) セレクトボックス選択エリア
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  function selectPart($ymd){
-
-    //◇処理対象日のパート1, 2, 3のレコードを取得する(インスタンス取得)
-    $one_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first();
-    $two_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
-    $three_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
-
-    //◇パート1のレコードが存在した際
-    if($one_part_frame){
-
-      //◇パート1のlimit_usersの取得 (書き方が重複してしまっている)
-      $one_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first()->limit_users;
-
-    //◇パート1のレコードが存在しない際
-    }else{
-      $one_part_frame = '0';
-    }
-
-    //◇パート2のレコードが存在した際
-    if($two_part_frame){
-      $two_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first()->limit_users;
-    }else{
-      $two_part_frame = '0';
-    }
-
-    //◇パート3のレコードが存在した際
-    if($three_part_frame){
-      $three_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first()->limit_users;
-    }else{
-      $three_part_frame = '0';
-    }
-
-
-
-
+  function selectPart($ymd, $startDay, $toDay){
 
     $html = [];
 
-    //◇html記述(セレクトボックス)
-    //◇getPart[]でセレクトボックス毎にデータを取得できる (getPart[1], getPart[2]など/各セレクトボックスのvalueが紐づけられている)
-    $html[] = '<select name="getPart[]" class="border-primary" style="width:70px; border-radius:5px;" form="reserveParts">';
-    $html[] = '<option value="" selected></option>';
+    //◇過去日付の際の描画
+    if($startDay <= $ymd && $toDay >= $ymd){
 
-    //パート1の残存数が0の際
-    if($one_part_frame == "0"){
-      $html[] = '<option value="1" disabled>リモ1部(残り0枠)</option>';
-    }else{
-      $html[] = '<option value="1">リモ1部(残り'.$one_part_frame.'枠)</option>';
+      $html[] = '<span class="calendar_past_text">受付終了</span>';
+      $html[] = '<input type="hidden" name="getPart[]" form="reserveParts>';
+
+    } else {
+
+      //◇処理対象日のパート1, 2, 3のレコードを取得する(インスタンス取得)
+      $one_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first();
+      $two_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
+      $three_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
+
+      //◇パート1のレコードが存在した際
+      if($one_part_frame){
+
+        //◇パート1のlimit_usersの取得 (書き方が重複してしまっている)
+        $one_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first()->limit_users;
+
+      //◇パート1のレコードが存在しない際
+      }else{
+        $one_part_frame = '0';
+      }
+
+      //◇パート2のレコードが存在した際
+      if($two_part_frame){
+        $two_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first()->limit_users;
+      }else{
+        $two_part_frame = '0';
+      }
+
+      //◇パート3のレコードが存在した際
+      if($three_part_frame){
+        $three_part_frame = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first()->limit_users;
+      }else{
+        $three_part_frame = '0';
+      }
+
+
+
+
+
+      //◇html記述(セレクトボックス)
+      //◇getPart[]でセレクトボックス毎にデータを取得できる (getPart[1], getPart[2]など/各セレクトボックスのvalueが紐づけられている)
+      $html[] = '<select name="getPart[]" class="border-primary" style="width:70px; border-radius:5px;" form="reserveParts">';
+      $html[] = '<option value="" selected></option>';
+
+      //パート1の残存数が0の際
+      if($one_part_frame == "0"){
+        $html[] = '<option value="1" disabled>リモ1部(残り0枠)</option>';
+      }else{
+        $html[] = '<option value="1">リモ1部(残り'.$one_part_frame.'枠)</option>';
+      }
+
+      //パート2の残存数が0の際
+      if($two_part_frame == "0"){
+        $html[] = '<option value="2" disabled>リモ2部(残り0枠)</option>';
+      }else{
+        $html[] = '<option value="2">リモ2部(残り'.$two_part_frame.'枠)</option>';
+      }
+
+      //パート3の残存数が0の際
+      if($three_part_frame == "0"){
+        $html[] = '<option value="3" disabled>リモ3部(残り0枠)</option>';
+      }else{
+        $html[] = '<option value="3">リモ3部(残り'.$three_part_frame.'枠)</option>';
+      }
+
+      //◇閉じタグ
+      $html[] = '</select>';
     }
 
-    //パート2の残存数が0の際
-    if($two_part_frame == "0"){
-      $html[] = '<option value="2" disabled>リモ2部(残り0枠)</option>';
-    }else{
-      $html[] = '<option value="2">リモ2部(残り'.$two_part_frame.'枠)</option>';
-    }
-
-    //パート3の残存数が0の際
-    if($three_part_frame == "0"){
-      $html[] = '<option value="3" disabled>リモ3部(残り0枠)</option>';
-    }else{
-      $html[] = '<option value="3">リモ3部(残り'.$three_part_frame.'枠)</option>';
-    }
-
-
-
-
-
-    //◇閉じタグ
-    $html[] = '</select>';
     return implode('', $html);
   }
 

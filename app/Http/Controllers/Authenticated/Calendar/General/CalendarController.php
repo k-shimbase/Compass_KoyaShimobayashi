@@ -41,10 +41,28 @@ class CalendarController extends Controller
         }catch(\Exception $e){
             DB::rollback();
         }
+
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
     }
 
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     // ◇スクール予約取り消し処理(POST) | deleteParts
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    public function delete(Request $request){
+
+        DB::beginTransaction();
+        try {
+            $reserve_id = $request->reserve_id;
+
+            //◇対象idのdetach/limit_usersの増加
+            Auth::user()->reserveSettings()->detach($reserve_id);
+            ReserveSettings::where('id', $reserve_id)->first()->increment('limit_users');
+            DB::commit();
+
+        } catch (\Exception $e){
+            DB::rollback();
+        }
+
+        return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
+    }
 }

@@ -17,7 +17,7 @@ class CalendarWeekBlankDay extends CalendarWeekDay{
      return '';
    }
 
-   function selectPart($ymd){
+   function selectPart($ymd, $startDay, $toDay){
      return '';
    }
 

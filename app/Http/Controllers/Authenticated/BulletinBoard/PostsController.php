@@ -11,8 +11,10 @@ use App\Models\Posts\PostComment;
 use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
+use App\Http\Requests\BulletinBoard\PostCreateRequest;
 use App\Http\Requests\BulletinBoard\MainCategoryRequest;
 use App\Http\Requests\BulletinBoard\SubCategoryRequest;
+use App\Http\Requests\BulletinBoard\CommentRequest;
 use Auth;
 
 class PostsController extends Controller
@@ -78,7 +80,7 @@ class PostsController extends Controller
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     // ◇投稿作成処理(POST) | post.create
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    public function postCreate(PostFormRequest $request){
+    public function postCreate(PostCreateRequest $request){
 
         $post = Post::create([
             'user_id' => Auth::id(),
@@ -133,7 +135,7 @@ class PostsController extends Controller
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     // ◇コメント作成処理(POST) | comment.create
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    public function commentCreate(Request $request){
+    public function commentCreate(CommentRequest $request){
         PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::id(),

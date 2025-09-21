@@ -24,6 +24,7 @@ li {
 /* サイドバー */
 .sidebar {
   width: 150px;
+  /*min-width: 150px;*/
   height: 100vh;
   background-color: #03AAD2;
   font-weight: bold;
@@ -71,16 +72,68 @@ li {
   background: #EEE;
 }
 
+/* スクール予約画面の過去日付のテキスト */
+.calendar_past_text {
+  font-size: 12px;
+  color: #777;
+}
+
 /* スクール予約画面のtd(日毎のセル) */
 .calendar-td {
   min-width: 100px;
 }
+
+
+
+
 
 /* 予約確認画面の各パートの予約者数の表示要素 */
 .day_part {
   color: #494949;
   font-size: 12px;
 }
+
+/* 予約確認画面のパートと予約者数のflex */
+.part_flex {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 0 auto;
+}
+
+/* 予約確認画面の予約者数のテキスト */
+.day_part_usercount {
+  color: black;
+  font-size: 12px;
+}
+
+
+
+
+
+/* 予約確認詳細画面のテーブルflex */
+.table-row-flex {
+  display: flex;
+}
+
+/* 予約確認詳細画面のIDカラム */
+.table-id {
+  flex-basis: 20%;
+}
+
+/* 予約確認詳細画面の名前カラム */
+.table-name {
+  flex-basis: 45%;
+}
+
+/* 予約確認詳細画面の場所カラム */
+.table-place {
+  flex-basis: 35%;
+}
+
+
+
+
 
 /* スクール枠登録画面のテーブル要素 */
 .adjust-table {
@@ -100,6 +153,17 @@ li {
 /* スクール枠登録ビューファイルに記述されているスクール枠上限登録ボタン */
 .adjust-table-btn {
   width: 70%;
+}
+
+/* スクール予約削除モーダル内の閉じるボタンと編集ボタンを包括する要素 */
+.delete-modal-btn {
+  justify-content: space-between;
+}
+
+/* 予約削除モーダルにおけるテキスト */
+span.delete_modal_text {
+  display: inline-block;
+  margin-bottom: 18px;
 }
 
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
@@ -259,6 +323,11 @@ li {
 /* 投稿詳細画面におけるコメントエリア(左側と右側共通) / 背景色 */
 .comment_container {
   background: #FFF;
+}
+
+/* コメントが親要素のwidth限界に到達した際に折り返す */
+.comment_area p {
+  word-break: break-word;
 }
 
 /* コメントエリア(左側と右側共通) */

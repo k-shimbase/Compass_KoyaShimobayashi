@@ -55,7 +55,7 @@ class SelectNameDetails implements DisplayUsers{
 
       //◇whereInにする必要がある(whereHasはクエリビルダ内で異なるテーブルへと接続できる唯一の方法である為利用されている/実際は中間テーブルとリレーション先のモデルのテーブルを結合させるものである/subject_usersのみで完結するが、こちらだと多少コードが長くなってしまう為見やすさという観点からwhereHasが利用されたと考えられる)
       ->whereHas('subjects', function($q) use ($subjects){
-        $q->where('subjects.id', $subjects);
+        $q->whereIn('subjects.id', $subjects);
       })
 
       ->orderBy('over_name_kana', $updown)->get();

@@ -9,6 +9,7 @@ use App\Calendars\Admin\CalendarSettingView; //◇Admin CalendarSettingViewク�
 use App\Models\Calendars\ReserveSettings;
 use App\Models\Calendars\Calendar;
 use App\Models\USers\User;
+use Carbon\Carbon;
 use Auth;
 use DB;
 
@@ -28,8 +29,15 @@ class CalendarsController extends Controller
     // ◆スクール予約詳細画面(GET) | calendar.admin.detail
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     public function reserveDetail($date, $part){
-        $reservePersons = ReserveSettings::with('users')->where('setting_reserve', $date)->where('setting_part', $part)->get();
-        return view('authenticated.calendar.admin.reserve_detail', compact('reservePersons', 'date', 'part'));
+
+        //◇対象日付/パートのidに属しているユーザ一覧を取得
+        $reserveUsers = User::whereHas('reserveSettings', function($where_query) use ($date, $part) {
+            $where_query->where('setting_reserve', $date)
+            ->where('setting_part', $part);
+        })->get();
+
+        $formatted_date = Carbon::parse($date)->format('Y年m月d日');
+        return view('authenticated.calendar.admin.reserve_detail', compact('reserveUsers', 'formatted_date', 'part'));
     }
 
     //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
