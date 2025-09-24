@@ -84,7 +84,7 @@ class CalendarWeekDay{
 
       //◇html記述(セレクトボックス)
       //◇getPart[]でセレクトボックス毎にデータを取得できる (getPart[1], getPart[2]など/各セレクトボックスのvalueが紐づけられている)
-      $html[] = '<select name="getPart[]" class="border-primary" style="width:70px; border-radius:5px;" form="reserveParts">';
+      $html[] = '<select name="getPart[]" class="border-primary day_select" style="border-radius:5px;" form="reserveParts">';
       $html[] = '<option value="" selected></option>';
 
       //パート1の残存数が0の際

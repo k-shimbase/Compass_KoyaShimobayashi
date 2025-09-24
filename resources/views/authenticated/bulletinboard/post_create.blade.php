@@ -8,7 +8,7 @@
   <!--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-->
   <!-- ◆ 投稿フォームエリア(左側のエリア)                                      -->
   <!--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-->
-  <div class="post_create_area border w-50 m-5 p-5">
+  <div class="post_create_area border round w-50 m-5 p-5">
     <div class="">
       @if($errors->first('post_category_id'))
       <span class="error_message">{{ $errors->first('post_category_id') }}</span>
@@ -16,7 +16,7 @@
 
       <!--◆カテゴリーを選択するセレクトボックス-->
       <p class="mb-0">カテゴリー</p>
-      <select class="w-100" form="postCreate" name="post_category_id">
+      <select class="w-100 border_grey" form="postCreate" name="post_category_id">
 
         @foreach($main_categories as $main_category)
         <option class="main_category_option" disabled>{{ $main_category->main_category }}</option>
@@ -40,7 +40,7 @@
       @endif
 
       <p class="mb-0">タイトル</p>
-      <input type="text" class="w-100" form="postCreate" name="post_title" value="{{ old('post_title') }}">
+      <input type="text" class="w-100 border_grey" form="postCreate" name="post_title" value="{{ old('post_title') }}">
     </div>
 
 
@@ -52,7 +52,7 @@
       @endif
 
       <p class="mb-0">投稿内容</p>
-      <textarea class="w-100" form="postCreate" name="post_body">{{ old('post_body') }}</textarea>
+      <textarea class="w-100 border_grey" form="postCreate" name="post_body">{{ old('post_body') }}</textarea>
     </div>
 
 
@@ -73,7 +73,7 @@
   <!--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-->
   @can('admin')
   <div class="w-25 ml-auto mr-auto">
-    <div class="category_area mt-5 p-5">
+    <div class="category_area round mt-5 p-5">
 
       <!--◆メインカテゴリー追加欄-->
       <div class="main_category_addbox">
@@ -82,7 +82,7 @@
         @endif
 
         <p class="m-0">メインカテゴリー</p>
-        <input type="text" class="w-100" name="main_category_name" form="mainCategoryRequest">
+        <input type="text" class="w-100 post_category_box border_grey" name="main_category_name" form="mainCategoryRequest">
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryRequest">
       </div>
 
@@ -99,7 +99,7 @@
         @endif
 
         <p class="m-0">サブカテゴリー</p>
-        <select class="w-100" name="main_category_id" form="subCategoryRequest">
+        <select class="w-100 post_category_box border_grey" name="main_category_id" form="subCategoryRequest">
           <option value="">---</option>
 
           @foreach ($main_categories as $main_category)
@@ -107,7 +107,7 @@
           @endforeach
         </select>
 
-        <input type="text" class="w-100" name="sub_category_name" form="subCategoryRequest">
+        <input type="text" class="w-100 post_category_box border_grey" name="sub_category_name" form="subCategoryRequest">
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryRequest">
       </div>
 

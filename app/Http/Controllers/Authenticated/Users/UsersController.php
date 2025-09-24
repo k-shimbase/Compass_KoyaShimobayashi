@@ -41,7 +41,7 @@ class UsersController extends Controller
 
 
         /*
-        /  ◇下記記述のみで実現可能(クラスを使う必要がない)
+        /  ◇下記記述でも実現可能
         /
         //◇クエリビルダの準備
         $query = User::query();

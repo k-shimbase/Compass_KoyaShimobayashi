@@ -35,8 +35,8 @@ class CalendarView{
     $html[] = '<th class="border">水</th>';
     $html[] = '<th class="border">木</th>';
     $html[] = '<th class="border">金</th>';
-    $html[] = '<th class="border">土</th>';
-    $html[] = '<th class="border">日</th>';
+    $html[] = '<th class="border day-sat">土</th>';
+    $html[] = '<th class="border day-sun">日</th>';
     $html[] = '</tr>';
     $html[] = '</thead>';
     $html[] = '<tbody>';
@@ -64,7 +64,7 @@ class CalendarView{
 
         //◇処理対象日付がstartDay以上/現在日が処理対象日付以下(つまるところ処理対象の日付が月初以降かつ今日以前の際) everyDayはCalendarWeekDayクラスの関数(Carbonインスタンスにformatを適用する処理)
         if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-          $html[] = '<td class="past-day border">'; //過去日付クラス
+          $html[] = '<td class="past-day border '.$day->getClassName().'">'; //過去日付クラス
         }else{
           $html[] = '<td class="border '.$day->getClassName().'">'; //曜日クラス(このgetClassNameはCalendarWeekDayクラスの関数/曜日を返す/day-monのように)
         }

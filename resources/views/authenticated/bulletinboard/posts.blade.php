@@ -3,23 +3,21 @@
 <!--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-->
 <!-- ◆ 掲示板トップ画面 (PostsController show関数)                          -->
 <!--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-->
-<div class="board_area w-100 border m-auto d-flex">
+<div class="board_area w-100 mt-4 d-flex">
 
   <!--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-->
   <!-- ◆ 投稿一覧表示エリア (画面左側エリア)                                   -->
   <!--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-->
-  <div class="post_view w-75 mt-5">
-    <p class="w-75 m-auto">投稿一覧</p>
-
+  <div class="post_view mt-4" style="width: 70%;">
     <!--◆取得されている投稿表示処理-->
     @foreach($posts as $post)
-    <div class="post_area border w-75 m-auto p-3">
+    <div class="post_area border round m-auto p-3" style="width: 90%;">
 
       <!--◇ユーザ名-->
-      <p><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
+      <p class="post_username"><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
 
       <!--◇投稿タイトル-->
-      <p><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
+      <p class="post_title"><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
 
 
 
@@ -31,7 +29,7 @@
         <!--◇科目表示-->
         <div class="">
             @foreach ($post->subCategory as $sub_category)
-              <span class="category_btn">{{ $sub_category->sub_category }}</span>
+              <span class="category_btn sub_category_frame color_cyan"> {{ $sub_category->sub_category }}</span>
             @endforeach
         </div>
 
@@ -43,11 +41,11 @@
           </div>
 
           <!--◇いいねアイコン/いいね数の表示-->
-          <div>
+          <div style="margin-right: 15px;">
             @if(Auth::user()->is_Like($post->id))
             <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span></p>
             @else
-            <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span></p>
+            <p class="m-0"><i class="far fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span></p>
             @endif
           </div>
 
@@ -70,32 +68,38 @@
   <!--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-->
   <!-- ◆ 操作/検索エリア (画面右側エリア)                                      -->
   <!--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-->
-  <div class="other_area border w-25">
-    <div class="border m-4">
+  <div class="other_area" style="width: 25%;">
+    <div class="other_area_contents m-4">
 
       <!--◇投稿ボタン-->
-      <div class=""><a href="{{ route('post.input') }}">投稿</a></div>
+      <div class="btn post_button color_cyan"><a href="{{ route('post.input') }}">投稿</a></div>
 
       <!--◇キーワード入力テキストエリア-->
-      <div class="">
-        <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
-        <input type="submit" value="検索" form="postSearchRequest">
+      <div class="keyword_flex">
+        <input class="btn" type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest" style="width: 70%;">
+        <input class="btn color_cyan" type="submit" value="検索" form="postSearchRequest" style="width: 30%;">
       </div>
 
       <!--◇いいねした投稿で検索/自分の投稿のみで検索/input type="submit"の特性でvalueがhtml上にも表示され、かつキーの値としても送信される-->
-      <input type="submit" name="like_posts" class="category_btn category_allow_click" value="いいねした投稿" form="postSearchRequest">
-      <input type="submit" name="my_posts" class="category_btn category_allow_click" value="自分の投稿" form="postSearchRequest">
+      <div class="like_or_own_flex">
+        <input type="submit" name="like_posts" class="category_btn category_allow_click color_pink" value="いいねした投稿" form="postSearchRequest">
+        <input type="submit" name="my_posts" class="category_btn category_allow_click color_yellow" value="自分の投稿" form="postSearchRequest">
+      </div>
+
+      <p class="mb-2">カテゴリー検索</p>
 
       <ul>
         <!--◇メインカテゴリ描画-->
         @foreach($main_categories as $main_category)
-          <li class="main_categories" category_id="{{ $main_category->id }}">
-            <span>{{ $main_category->main_category }}</span>
+          <li class="main_categories">
+            <div class="main_category_row">
+              <span>{{ $main_category->main_category }}</span><i class="bi bi-chevron-down fw-bold"></i>
+            </div>
 
-            <div class="sub_categories category_num{{ $main_category->id }}">
+            <div class="sub_categories">
               <ul>
                 @foreach ($main_category->subCategory as $sub_category)
-                <li><input type="submit" name="sub_category" class="category_btn" value="{{ $sub_category->sub_category }}" form="postSearchRequest"></inupt></li>
+                <li><input type="submit" name="sub_category" class="sub_category_row" value="{{ $sub_category->sub_category }}" form="postSearchRequest"></inupt></li>
                 @endforeach
               </ul>
             </div>

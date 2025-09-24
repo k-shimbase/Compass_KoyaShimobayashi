@@ -6,10 +6,13 @@
   <form action="{{ route('loginPost') }}" method="POST">
 
     <!--◆メインエリア(要素を画面中央に配置)-->
-    <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
+    <div class="w-100 vh-100 d-flex flex-column guest_container" style="align-items:center; justify-content:center;">
+
+      <!--◇ロゴ-->
+      <div class="atlas_logo"><img src="{{ asset('image/atlas-black.png') }}" alt="Atlas Logo"></div>
 
       <!--◇ログインボックス-->
-      <div class="border vh-50 w-25">
+      <div class="border vh-50 guest_form_area guest_login shadow">
 
         <!--◇メールアドレスエリア-->
         <div class="w-75 m-auto pt-5">
@@ -34,7 +37,7 @@
 
         <!--◇新規登録画面への遷移リンク-->
         <div class="text-center">
-          <a href="{{ route('registerView') }}">新規登録</a>
+          <a href="{{ route('registerView') }}">新規登録はこちら</a>
         </div>
 
       </div>

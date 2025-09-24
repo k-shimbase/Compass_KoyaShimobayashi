@@ -4,13 +4,13 @@
 <!-- ◆ トップ画面 (TopsController show関数)                                -->
 <!--━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━-->
 <div class="vh-100 border">
+  <!--◇ページ内サブタイトル-->
+  <p class="top_subtitle">自分のプロフィール</p>
+
   <div class="top_area w-75 m-auto pt-5">
 
-    <!--◇ページ内サブタイトル-->
-    <p>マイページ</p>
-
     <!--◇ログインユーザの情報-->
-    <div class="user_status p-3">
+    <div class="user_status p-3 shadow round">
       <p>名前：<span>{{ Auth::user()->over_name }}</span><span class="ml-1">{{ Auth::user()->under_name }}</span></p>
       <p>カナ：<span>{{ Auth::user()->over_name_kana }}</span><span class="ml-1">{{ Auth::user()->under_name_kana }}</span></p>
       <p>性別：@if(Auth::user()->sex == 1)<span>男</span>@else<span>女</span>@endif</p>

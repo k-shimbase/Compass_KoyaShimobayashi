@@ -39,7 +39,7 @@ class SelectNameDetails implements DisplayUsers{
     //◇クエリ取得
     $users = User::with('subjects')
 
-      //◇whereでorWhere処理をグループ化(orWhereは実際にクエリ文が作成された際にAND文の記述となる為、グループ化をしなかった際はWHERE ... LIKE ...OR...OR...AND...となってしまう。グループ化するとWHERE (OR...OR...) ANDとなる)
+      //◇whereでorWhere処理をグループ化
       ->where(function($q) use ($keyword){
         $q->Where('over_name', 'like', '%'.$keyword.'%')
         ->orWhere('under_name', 'like', '%'.$keyword.'%')

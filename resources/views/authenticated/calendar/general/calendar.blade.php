@@ -6,20 +6,18 @@
 <!--◆内容はCalendarsの各クラスを経由して定義されている-->
 
 <div class="vh-100 pt-5" style="background:#ECF1F6;">
-  <div class="border w-75 m-auto pt-5 pb-5" style="border-radius:5px; background:#FFF;">
-    <div class="w-75 m-auto border" style="border-radius:5px;">
+  <div class="border shadow round m-auto pt-5 pb-5" style="width: 1150px; border-radius:5px; background:#FFF;">
+    <div class="m-auto" style="border-radius:5px; width: 90%;">
 
       <!--◇内容描画-->
-      <p class="text-center">{{ $calendar->getTitle() }}</p>
-      <div class="">
-        {!! $calendar->render() !!}
+      <p class="text-center calendar_title">{{ $calendar->getTitle() }}</p>
+      {!! $calendar->render() !!}
+
+
+      <!--◇スクール予約ボタン-->
+      <div class="text-right m-auto">
+        <input type="submit" class="btn btn-primary" value="予約する" form="reserveParts">
       </div>
-
-    </div>
-
-    <!--◇スクール予約ボタン-->
-    <div class="text-right w-75 m-auto">
-      <input type="submit" class="btn btn-primary" value="予約する" form="reserveParts">
     </div>
 
   </div>

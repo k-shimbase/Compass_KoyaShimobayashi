@@ -7,7 +7,7 @@
 }
 
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-/* ◆ ボディ                                     */
+/* ◆ 共通                                       */
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 .all_content {
   background: #ECF1F6;
@@ -18,16 +18,103 @@ li {
   list-style: none;
 }
 
+/* 影 */
+.shadow {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 角に丸みを持たせる */
+.round {
+  border-radius: 10px;
+}
+
+/* ボーダーライトグレー */
+.border_grey {
+  border: 1px solid #ddd;
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* ◆ 未ログイン時の画面                          */
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 未ログイン時の画面全体 */
+.guest_container {
+  background-color: #ecf1f6;
+}
+
+/* 未ログイン時の画面のフォームエリア */
+.guest_form_area {
+  background-color: white;
+  border-radius: 15px;
+  width: 450px;
+}
+
+/* ログインフォームエリア */
+.guest_login {
+  padding: 0 20px;
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+
+/* 登録フォームエリア */
+.guest_register {
+  padding: 0 45px;
+  padding-top: 40px;
+  padding-bottom: 10px;
+}
+
+/* Atlasのロゴ表示 */
+.atlas_logo {
+  width: 200px;
+  margin-bottom: 40px;
+}
+
+/* Atlasのロゴ実態 */
+.atlas_logo img {
+  width: 100%;
+}
+
+/* フォーム最下部のテキスト */
+.text-center {
+  margin-bottom: 15px;
+}
+
+/* カレンダータイトル */
+.calendar_title {
+  font-size: 23px;
+}
+
+/* 登録画面の名前フレックスアイテム */
+.name_flex_item {
+  width: 160px;
+}
+
+/* 登録画面の生年月日セレクトボックス */
+.birth_selectbox {
+  display: inline-block;
+  width: 99px;
+}
+
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 /* ◆ サイドバー                                 */
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 /* サイドバー */
 .sidebar {
-  width: 150px;
-  /*min-width: 150px;*/
+  width: 195px;
   height: 100vh;
   background-color: #03AAD2;
   font-weight: bold;
+}
+
+/* メニュー項目 */
+.sidebar p {
+  color: white;
+  padding: 6px 7px;
+  margin-bottom: 0;
+}
+
+/* メニュー項目 */
+.sidebar p:first-of-type {
+  margin-top: 10px;
 }
 
 /* コンテンツ描画エリア */
@@ -40,18 +127,35 @@ li {
   color: #FFF;
 }
 
-/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-/* ◆ トップページ                               */
-/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-/* ユーザ情報表エリア */
-.user_status {
-  border-radius: 10px;
-  background: #FFF;
+/* サイドバーのアイコン */
+.sidebar p i {
+  margin-right: 6px;
 }
 
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-/* ◆ スクール予約関連                           */
+/* ◆ トップページ                               */
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* ユーザ情報表示エリア */
+.user_status {
+  background: #FFF;
+}
+
+/* トップ画面の"自分のプロフィール"テキスト */
+.top_subtitle {
+  padding: 15px;
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* ◆ スクール予約関連共通                        */
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+.calendar {
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+}
+
 /* 当月以外の日付の背景色 */
 .day-blank {
   background: #D3D3D3;
@@ -72,87 +176,19 @@ li {
   background: #EEE;
 }
 
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* ◆ スクール予約画面                            */
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 /* スクール予約画面の過去日付のテキスト */
 .calendar_past_text {
-  font-size: 12px;
-  color: #777;
+  font-size: 14px;
+  color: black;
 }
 
 /* スクール予約画面のtd(日毎のセル) */
-.calendar-td {
-  min-width: 100px;
-}
-
-
-
-
-
-/* 予約確認画面の各パートの予約者数の表示要素 */
-.day_part {
-  color: #494949;
-  font-size: 12px;
-}
-
-/* 予約確認画面のパートと予約者数のflex */
-.part_flex {
-  display: flex;
-  justify-content: space-between;
-  width: 50%;
-  margin: 0 auto;
-}
-
-/* 予約確認画面の予約者数のテキスト */
-.day_part_usercount {
-  color: black;
-  font-size: 12px;
-}
-
-
-
-
-
-/* 予約確認詳細画面のテーブルflex */
-.table-row-flex {
-  display: flex;
-}
-
-/* 予約確認詳細画面のIDカラム */
-.table-id {
-  flex-basis: 20%;
-}
-
-/* 予約確認詳細画面の名前カラム */
-.table-name {
-  flex-basis: 45%;
-}
-
-/* 予約確認詳細画面の場所カラム */
-.table-place {
-  flex-basis: 35%;
-}
-
-
-
-
-
-/* スクール枠登録画面のテーブル要素 */
-.adjust-table {
-  width: 70% !important;
-}
-
-/* 上記のテーブルセル */
-.adjust-table td {
-  padding: 0 !important;
-}
-
-/* スクール枠登録画面の入力エリア(各日付/各パートごとのlimit_usersの入力と表示が為されているエリア)のpタグ */
-.adjust-area p {
-  justify-content: space-around;
-}
-
-/* スクール枠登録ビューファイルに記述されているスクール枠上限登録ボタン */
-.adjust-table-btn {
-  width: 70%;
+.table .calendar-td {
+  min-width: 140px;
+  padding-bottom: 25px;
 }
 
 /* スクール予約削除モーダル内の閉じるボタンと編集ボタンを包括する要素 */
@@ -164,6 +200,126 @@ li {
 span.delete_modal_text {
   display: inline-block;
   margin-bottom: 18px;
+}
+
+/* 予約画面のセレクトボックス */
+.day_select {
+  width: 100px;
+  font-size: 14px;
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* ◆ スクール予約確認画面                        */
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 予約確認画面の各パートの予約者数の表示要素 */
+.day_part {
+  color: #04A9D2;
+  font-size: 14px;
+}
+
+/* 予約確認画面のパートと予約者数のflex */
+.part_flex {
+  display: flex;
+  justify-content: space-between;
+  width: 55%;
+  margin: 0 auto;
+}
+
+/* 予約確認画面の予約者数のテキスト */
+.day_part_usercount {
+  color: black;
+  font-size: 12px;
+}
+
+/* スクール予約確認とスクール枠登録の日付 */
+.admin_day {
+  margin-bottom: 0;
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* ◆ スクール予約確認詳細画面                    */
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 予約確認詳細画面のテーブルflex */
+.table_row_flex {
+  display: flex;
+}
+
+/* 1行ごとの間隔 */
+.reserve_detail_area tr {
+  margin: 0;
+}
+
+/* 予約確認詳細画面のIDカラム */
+.table_id {
+  flex-basis: 11%;
+}
+
+/* 予約確認詳細画面の名前カラム */
+.table_name {
+  flex-basis: 47%;
+}
+
+/* 予約確認詳細画面の場所カラム */
+.table_place {
+  flex-basis: 42%;
+}
+
+/* 予約詳細画面の白枠 */
+.reserve_detail_area {
+  padding: 7px;
+}
+
+/* ヘッダー */
+.reserve_detail_table tr:first-of-type {
+  color: white;
+}
+
+/* テーブルデータ */
+.table_date td {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  padding: 7px 0;
+}
+
+.reserve_detail_table .table_date:nth-child(odd) {
+  background-color: #E5F6FA;
+}
+
+/* 予約日とパート */
+.detail_title {
+  font-size: 18px;
+  margin: 7px 2px;
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* ◆ スクール枠登録画面                          */
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* スクール枠登録画面のテーブル要素 */
+.adjust-table {
+  width: 100% !important;
+}
+
+/* 上記のテーブルセル */
+.adjust-table td {
+  padding: 0 !important;
+}
+
+/* スクール枠登録の日付内部要素 */
+.adjust-area {
+  width: 80%;
+  margin: auto;
+}
+
+/* 予約上限入力欄 */
+.limit_input_box {
+  width: 40px;
+  background-color: transparent;
+  padding: 0 5px;
+}
+
+/* スクール枠登録画面の入力エリア(各日付/各パートごとのlimit_usersの入力と表示が為されているエリア)のpタグ */
+.adjust-area p {
+  justify-content: space-between;
 }
 
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
@@ -198,35 +354,16 @@ span.delete_modal_text {
 }
 
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-/* ◆ 掲示板                                     */
+/* ◆ 掲示板 投稿一覧                            */
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-/* main_categories要素へのjsで$('.category_num' + category_id).slideToggle();が指定されている為displayがnone表示となっている */
+/* サブカテゴリ非表示(jsにて表示) */
 .sub_categories {
   display: none;
-}
-
-/* 投稿画面の左側エリア */
-.post_create_area {
-  background: #FFF;
-  border-radius: 10px;
-}
-
-/* 投稿画面の左側エリアのテキストエリア */
-.post_create_area textarea {
-  resize: none;
-  height: 300px;
-  white-space: pre-wrap;
-}
-
-/* 投稿詳細エリアのコンテナ */
-.detail_container {
-  background: #FFF;
 }
 
 /* 掲示板トップの投稿一覧表示エリア */
 .post_area {
   background: #FFF;
-  border-radius: 10px;
 }
 
 /* 掲示板トップの各投稿のアイコンエリア */
@@ -234,9 +371,19 @@ span.delete_modal_text {
   justify-content: space-between;
 }
 
+/* いいね済みのマーク以外のアイコンをグレーにする */
+.post_bottom_area:not(.fas) {
+  color: grey;
+}
+
 /* 投稿一覧表示エリアのアイコンエリアflex(HTMLタグにてd-flexの指定あり) */
 .post_status span {
   font-size: 12px;
+}
+
+/* アイコンと数値の間隔 */
+.post_status div i {
+  margin-right: 3px;
 }
 
 /* いいねボタン */
@@ -251,28 +398,206 @@ span.delete_modal_text {
   color: #E2254D;
 }
 
+/* 投稿一覧画面における"いいねした投稿"と"自分の投稿"類のボタンに付与するカーソルポインタ */
+.category_allow_click {
+  cursor: pointer;
+}
+
+/* 投稿一覧表示エリアの"いいねした投稿"や"自分の投稿"のボタン要素 */
+.category_btn {
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 0 5px;
+  border: none;
+  background: #999;
+  color: #FFF;
+}
+
+/* サブカテゴリーのフレーム */
+.sub_category_frame {
+  padding: 4px 6px;
+  font-size: 14px;
+}
+
+/* メインカテゴリ表示欄 */
+.main_categories {
+  padding: 6px 0;
+  margin-bottom: 6px;
+}
+
+/* メインカテゴリ欄の1行 */
+.main_category_row,
+.search_conditions {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #cecece;
+}
+
+/* メインカテゴリ欄の開閉記号 */
+.main_category_row i,
+.search_conditions i,
+.subject_edit_btn i {
+  display: inline-block;
+  margin-right: 10px;
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+/* 開閉記号アクティブの際 */
+.main_category_row i.active,
+.search_conditions i.active,
+.subject_edit_btn i.active {
+  transform: rotate(0deg);
+}
+
+/* サブカテゴリ欄の1行 */
+.sub_category_row {
+  margin: 0 23px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  width: 75%;
+  border: none;
+  border-bottom: 2px solid #cecece;
+  background-color: transparent;
+  text-align: left;
+}
+
+/* 投稿一覧表示エリアの右側エリアにおけるメインカテゴリとサブカテゴリのテキスト表示 */
+.main_categories span,
+.sub_categories li input {
+  list-style: none;
+  cursor: pointer;
+}
+
+/* 投稿一覧のユーザ名 */
+.post_area .post_username {
+  font-weight: bold;
+  color: grey;
+}
+
+/* 投稿一覧のタイトル */
+.post_area .post_title a {
+  font-weight: bold;
+  color: black;
+}
+
+/* 投稿一覧画面の右側エリア */
+.other_area {
+  padding: 0 10px;
+}
+
+/* 投稿一覧画面の投稿ボタン */
+.other_area .post_button {
+  width: 100%;
+  border: none;
+}
+
+/* 投稿一覧画面の投稿ボタンのテキスト */
+.other_area .post_button a {
+  display: block;
+  width: 100%;
+  color: white;
+}
+
+/* キーワードflex */
+.keyword_flex {
+  display: flex;
+  width: 100%;
+  height: 34px;
+}
+
+/* キーワード入力欄と検索ボタン */
+.keyword_flex input {
+  height: 100%;
+}
+
+/* キーワード入力欄 */
+.keyword_flex input:first-of-type {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  text-align: left;
+  border: 1px solid #cecece;
+}
+
+/* 検索ボタン */
+.keyword_flex input:last-of-type {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: white;
+}
+
+/* いいねした投稿/自分の投稿ボタンを包括する要素 */
+.like_or_own_flex {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 34px;
+}
+
+/* いいねした投稿/自分の投稿ボタン */
+.like_or_own_flex input {
+  width: 49%;
+  height: 100%;
+}
+
+/* 投稿一覧画面の右側エリアの親div */
+.other_area_contents > div {
+  margin-bottom: 20px;
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* ◆ 掲示板 投稿作成                             */
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 投稿作成画面の左側エリア */
+.post_create_area {
+  background: #FFF;
+}
+
+/* 投稿画面の左側エリアのテキストエリア */
+.post_create_area textarea {
+  resize: none;
+  height: 300px;
+  white-space: pre-wrap;
+}
+
+/* 投稿作成エリアのカテゴリー追加エリア (画面右側) */
+.category_area {
+  background: #FFF;
+}
+
+/* カテゴリ追加ボックスのメインカテゴリー箇所(上部分) */
+.main_category_addbox {
+  margin-bottom: 50px;
+}
+
+/* 投稿作成エリアのメインカテゴリーのセレクトボックス */
+.category_box {
+  border-radius: 5px;
+  padding: 3px;
+  background: #999;
+  font-size: 10px;
+  color: #FFF;
+}
+
 /* 投稿作成エリアでのバリデーションエラーメッセージ要素 */
 .error_message {
   font-size: 12px;
   color: red;
 }
 
-/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-/* ◆ カテゴリー追加関連                         */
-/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-/* カテゴリ追加ボックスのメインカテゴリー箇所(上部分) */
-.main_category_addbox {
-  margin-bottom: 50px;
-}
-
-/* 投稿一覧画面における"いいねした投稿"と"自分の投稿"類のボタン */
-.category_allow_click {
-  cursor: pointer;
+/* カテゴリーボックス(入力欄とセレクトボックス欄) */
+.post_category_box {
+  margin-bottom: 20px;
 }
 
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-/* ◆ 掲示板詳細画面                             */
+/* ◆ 掲示板 投稿詳細                             */
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 投稿詳細エリアのコンテナ */
+.detail_container {
+  background: #FFF;
+}
+
 /* 投稿詳細画面におけるユーザ名の表示要素を包括する要素 */
 .contributor {
   font-size: 12px;
@@ -280,19 +605,22 @@ span.delete_modal_text {
   font-weight: bold;
 }
 
+/* 投稿詳細画面における左側エリアの内容包括要素 */
 .post_detail_area {
   justify-content: space-between;
 }
 
 /* 投稿詳細画面における投稿タイトル */
 .detsail_post_title {
-  font-size: 14px;
+  font-size: 16px;
+  word-break: break-word;
 }
 
 /* 投稿詳細画面における投稿内容 */
 .detsail_post {
-  font-size: 12px;
+  font-size: 16px;
   color: #9E9E9E;
+  word-break: break-word;
 }
 
 /* 編集/削除ボタンを包括する要素 */
@@ -317,8 +645,22 @@ span.delete_modal_text {
   justify-content: space-between;
 }
 
+/* 編集ボタンと削除ボタン共通 */
+.edit_delete_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  padding: 8px 15px;
+  margin-right: 5px;
+}
+
+.contributor .post_username {
+  font-size: 16px;
+}
+
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-/* ◆ 掲示板 コメント                            */
+/* ◆ 掲示板 投稿詳細画面 コメント                */
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 /* 投稿詳細画面におけるコメントエリア(左側と右側共通) / 背景色 */
 .comment_container {
@@ -348,39 +690,10 @@ span.delete_modal_text {
   font-size: 12px;
 }
 
-/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-/* ◆ 掲示板 カテゴリー                          */
-/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-/* 投稿作成エリアのカテゴリー追加エリア (画面右側) */
-.category_area {
-  background: #FFF;
-  border-radius: 10px;
-}
-
-/* 投稿作成エリアのメインカテゴリーのセレクトボックス？ */
-.category_box {
-  border-radius: 5px;
-  padding: 3px;
-  background: #999;
-  font-size: 10px;
-  color: #FFF;
-}
-
-/* 投稿一覧表示エリアの"いいねした投稿"や"自分の投稿"のボタン要素 */
-.category_btn {
-  font-size: 12px;
-  border-radius: 5px;
-  padding: 0 5px;
-  border: none;
-  background: #999;
-  color: #FFF;
-}
-
-/* 投稿一覧表示エリアの右側エリアにおけるメインカテゴリとサブカテゴリのテキスト表示 */
-.main_categories span,
-.sub_categories li input {
-  list-style: none;
-  cursor: pointer;
+/* 投稿ボタン */
+.post_btn {
+  display: block;
+  margin-left: auto;
 }
 
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
@@ -390,13 +703,15 @@ span.delete_modal_text {
 .reserve_users_area {
   display: flex;
   flex-wrap: wrap;
-  width: 800px;
+  width: 70%;
   margin: 10px auto;
-  height: 80vh;
+  height: 100vh;
   overflow: scroll;
   padding: 10px;
   background: #FFF;
   border-radius: 5px;
+  gap: 20px 12px;
+  background-color: transparent;
 }
 
 /* ユーザ情報一覧表示エリアのテキスト表示 */
@@ -406,8 +721,98 @@ span.delete_modal_text {
 
 /* ユーザ単体要素 */
 .one_person {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 250px;
-  height: 250px;
+  height: 260px;
+  background-color: white;
+  padding: 20px;
+}
+
+/* ユーザ情報内のフォントサイズ */
+.one_person .text_cyan span,
+.one_person .text_grey,
+.one_person .text_black {
+  font-size: 13px;
+}
+
+/* ユーザ情報内の名前 */
+.one_person .text_cyan span {
+  color: #04A9D2;
+}
+
+/* ユーザ情報内の項目名 */
+.one_person .text_grey {
+  color: grey;
+}
+
+/* ユーザ情報内の項目名の値 */
+.one_person .text_black {
+  color: black;
+  font-weight: 500;
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* ◆ ユーザ検索 検索エリア                       */
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 検索エリア(画面右側) */
+.search_area {
+  width: 22%;
+  margin: 40px auto;
+}
+
+/* 検索テキスト */
+.search_h3 {
+  display: block;
+  font-size: 20px;
+}
+
+/* "キーワードを検索"ボックス */
+.free_word {
+  width: 100%;
+  text-align: left;
+  padding: 13px;
+  margin-bottom: 13px;
+}
+
+/* 項目名テキスト */
+.item_font {
+  color: #3d6060;
+  margin: 13px 0;
+}
+
+/* 入力ボックスの背景色 */
+.box_background {
+  background-color: #E0E5E9;
+}
+
+/* 検索条件の追加 */
+.search_add {
+  margin: 40px 20px;
+}
+
+/* 検索欄のセレクトボックス */
+.search_selectbox {
+  width: 100px;
+  padding: 6px 12px;
+  text-align: left;
+}
+
+/* 権限のセレクトボックス */
+.role_selectbox {
+  width: 140px;
+}
+
+/* 検索欄の科目とチェックボックスを包括する要素 */
+.search_subject {
+  display: inline;
+  margin-right: 7px;
+}
+
+/* 検索欄の科目 */
+.search_subject span {
+  margin-right: 3px;
 }
 
 /* 検索条件の追加にカーソルを合わせた際の指定 */
@@ -415,23 +820,66 @@ span.delete_modal_text {
   cursor: pointer;
 }
 
-/* 検索条件の追加の子要素 | user_searchのjsにてSlideToggle指定あり */
+/* 検索条件の追加の子要素 */
 .search_conditions_inner {
   display: none;
-  background: #FFF;
+  background: transparent;
+}
+
+/* 検索ボタン */
+.search_btn {
+  width: 100%;
+  height: 50px;
+  color: white;
+}
+
+/* リセットボタン */
+.search_reset {
+  margin: 20px auto;
+  background-color: transparent;
+  color: #04A9D2;
+  border: none;
+  cursor: pointer;
 }
 
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 /* ◆ ユーザ情報詳細画面                          */
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-/* ユーザ情報詳細画面の選択科目の編集ボタン */
+/* ユーザ情報詳細画面の選択科目の登録開閉ボタン */
 .subject_edit_btn {
-  font-size: 12px;
-  color: #0000FF;
+  font-size: 16px;
+  color: #04A9D2;
   cursor: pointer;
 }
 
 /* 選択科目の編集ボタンに紐づく科目を包括する要素 */
 .subject_inner {
   display: none;
+}
+
+/* 選択科目登録エリア */
+.admin_subject_area {
+  margin: 10px 0;
+}
+
+/* 選択科目の登録エリアの各科目要素 */
+.admin_subject_item {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* ◆ カラー                                     */
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* シアン色 */
+.color_cyan {
+  background-color: #04A9D2;
+}
+
+.color_pink {
+  background-color: #E38EAB;
+}
+
+.color_yellow {
+  background-color: #EBBC5D;
 }

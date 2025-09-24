@@ -25,7 +25,7 @@ class CalendarWeekDay{
   // ◆日付インスタンスの日にちを含んだpタグを返す format("j")が日付取得関数
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   function render(){
-    return '<p class="day">' . $this->carbon->format("j") . '日</p>';
+    return '<p class="day admin_day">' . $this->carbon->format("j") . '日</p>';
   }
 
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

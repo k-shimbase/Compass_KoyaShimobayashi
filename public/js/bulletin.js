@@ -2,9 +2,16 @@ $(function () {
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   // ◆メインカテゴリクリック時に紐づいているサブカテゴリの表示切替を行う関数
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  $('.main_categories').click(function () {
-    var category_id = $(this).attr('category_id');
-    $('.category_num' + category_id).slideToggle();
+  $(document).ready(function () {
+    $('.main_category_row').click(function () {
+
+      //◇開閉記号active
+      $(this).find('i').toggleClass('active');
+
+      //◇同階層のsub_categoriesをslideToggle。
+      $(this).siblings('.sub_categories').slideToggle();
+
+    });
   });
 
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -13,7 +20,9 @@ $(function () {
   $(document).on('click', '.like_btn', function (e) {
     e.preventDefault();
     $(this).addClass('un_like_btn');
+    $(this).addClass('fas');
     $(this).removeClass('like_btn');
+    $(this).removeClass('far');
     var post_id = $(this).attr('post_id');
     var count = $('.like_counts' + post_id).text();
     var countInt = Number(count);
@@ -38,7 +47,9 @@ $(function () {
   $(document).on('click', '.un_like_btn', function (e) {
     e.preventDefault();
     $(this).removeClass('un_like_btn');
+    $(this).removeClass('fas');
     $(this).addClass('like_btn');
+    $(this).addClass('far');
     var post_id = $(this).attr('post_id');
     var count = $('.like_counts' + post_id).text();
     var countInt = Number(count);
